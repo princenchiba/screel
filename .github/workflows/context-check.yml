@@ -8,6 +8,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Write GitHub context to log
         env:
-          GITHUB_CONTEXT: ${{ toJSON(github.events) }}
+          GITHUB_CONTEXT: ${{ toJSON(github.event) }}
         run: echo "$GITHUB_CONTEXT"
   
