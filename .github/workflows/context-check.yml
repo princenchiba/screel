@@ -1,0 +1,13 @@
+name: Context-checker
+on: issues
+jobs:
+  Context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull repo
+        uses: actions/checkout@v3
+      - name: Write GitHub context to log
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+  
