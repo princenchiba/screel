@@ -35,6 +35,6 @@ jobs:
       - name: Install dependencies
         run: npm install 
       - name: Feedback
-        run: echo "Deploying project"
+        run: echo "Deploying project..."
       - name: run build 
         run: npm run build 
