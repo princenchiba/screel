@@ -12,6 +12,7 @@ jobs:
           path: ~/.npm
           key: depencency-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.ccache-hit != 'true'
         run: npm install 
       - name: run lint 
         run: npm run lint 
@@ -26,6 +27,7 @@ jobs:
           path: ~/.npm
           key: depencency-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.ccache-hit != 'true'
         run: npm install 
       - name: Feedback
         run: echo "Testing project"
@@ -50,6 +52,7 @@ jobs:
           path: ~/.npm
           key: depencency-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.ccache-hit != 'true'
         run: npm install 
       - name: Feedback
         run: echo "Building project..."
@@ -73,7 +76,7 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
   Report: 
-    needs: [lint, build]
+    needs: [lint, Test]
     if: failure()
     runs-on: ubuntu-latest
     steps:
